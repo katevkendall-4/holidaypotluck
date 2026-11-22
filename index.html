@@ -72,6 +72,32 @@
     .poster-card { padding: 12px; text-align: center; border-color: var(--lavender); }
     .poster-card img { width: 100%; height: auto; border-radius: 12px; display: block; }
 
+    /* Compact Quick Links Card */
+    .quick-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    .quick-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #F8FAFD;
+      border: 1.5px solid #E1E9F4;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .quick-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .quick-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate); }
+    .quick-value { font-size: 0.96rem; font-weight: 700; color: var(--navy); }
+    .quick-sub { font-size: 0.85rem; color: var(--muted); }
+
+    .clean-link { color: var(--cobalt); text-decoration: none; border-bottom: 1.5px dashed var(--cobalt); }
+    .clean-link:hover { color: var(--navy); border-bottom-style: solid; }
+
     h2 {
       font-family: 'Fredoka', sans-serif;
       color: var(--navy);
@@ -82,22 +108,7 @@
       gap: 8px;
     }
 
-    .detail-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 12px 0;
-      border-bottom: 1px solid #EEF2F7;
-    }
-
-    .detail-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .detail-icon { font-size: 1.45rem; line-height: 1.2; flex-shrink: 0; width: 32px; text-align: center; }
-    .detail-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate); }
-    .detail-value { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
-    .detail-note { font-size: 0.92rem; color: var(--muted); margin-top: 2px; }
-
-    .clean-link { color: var(--cobalt); text-decoration: none; border-bottom: 1.5px dashed var(--cobalt); }
-    .clean-link:hover { color: var(--navy); border-bottom-style: solid; }
+    .detail-note { font-size: 0.92rem; color: var(--muted); }
 
     .guest-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .count-pill { font-size: 0.85rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: #E8F3FC; color: var(--navy); }
@@ -130,60 +141,29 @@
       <img src="poster-image.png" alt="Holiday Potluck Invitation - Sunday, December 20, 3-7 PM at 906 Derrydown Way, Decatur, GA" />
     </section>
 
-    <section class="card">
-      <h2>❄️ Party Details</h2>
-      <div class="detail-row">
-        <div class="detail-icon">📅</div>
+    <section class="card quick-bar">
+      <div class="quick-item">
+        <div class="quick-icon">📍</div>
         <div>
-          <div class="detail-label">Date</div>
-          <div class="detail-value">Sunday, December 20</div>
-          <div class="detail-note">Please RSVP by Sunday, December 13</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">⏰</div>
-        <div>
-          <div class="detail-label">Time (Drop-in)</div>
-          <div class="detail-value">3:00 PM – 7:00 PM</div>
-          <div class="detail-note">Swing by whenever works for your family and stay as long as you'd like!</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">📍</div>
-        <div>
-          <div class="detail-label">Location</div>
-          <div class="detail-value">
+          <div class="quick-label">Directions</div>
+          <div class="quick-value">
             <a class="clean-link" href="https://maps.google.com/?q=906+Derrydown+Way,+Decatur,+GA+30030" target="_blank" rel="noopener">
-              906 Derrydown Way, Decatur, GA 30030
+              906 Derrydown Way, Decatur
             </a>
           </div>
+          <div class="quick-sub">Tap to open in Google Maps</div>
         </div>
       </div>
-      <div class="detail-row">
-        <div class="detail-icon">🧣</div>
+
+      <div class="quick-item">
+        <div class="quick-icon">📱</div>
         <div>
-          <div class="detail-label">The Setup &amp; Attire</div>
-          <div class="detail-value">Adults Indoors • Kids Outdoors (Weather Permitting)</div>
-          <div class="detail-note">Pack warm coats and layers for the kids so they can play outside while adults mingle inside!</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">🍲</div>
-        <div>
-          <div class="detail-label">Potluck &amp; Little Reader's Book Share</div>
-          <div class="detail-value">Bring a dish to share &amp; a well-loved kids' book</div>
-          <div class="detail-note">Pass along a favorite book from home and pick out a new-to-you story to take home.</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">📱</div>
-        <div>
-          <div class="detail-label">Questions?</div>
-          <div class="detail-value">
-            Text or call Kate at <a class="clean-link" href="tel:4047887014">404-788-7014</a>
+          <div class="quick-label">Questions?</div>
+          <div class="quick-value">
+            <a class="clean-link" href="tel:4047887014">404-788-7014</a>
           </div>
-          <div class="detail-note">
-            Or email <a class="clean-link" href="mailto:kate.v.kendall@gmail.com">kate.v.kendall@gmail.com</a>
+          <div class="quick-sub">
+            <a class="clean-link" href="mailto:kate.v.kendall@gmail.com">kate.v.kendall@gmail.com</a>
           </div>
         </div>
       </div>
