@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kendall Holiday Drop-in Potluck &amp; Book Share</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #043474;
+      --cobalt: #0277BD;
+      --slate: #6F88A6;
+      --lavender: #C49CE6;
+      --lavender-soft: #F3EAFC;
+      --bg: #F3F5F8;
+      --card: #FFFFFF;
+      --text: #1B2A41;
+      --muted: #55657D;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(#d8e2ee 1px, transparent 1px);
+      background-size: 20px 20px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 16px; }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--lavender-soft);
+      color: var(--navy);
+      border: 1.5px solid var(--lavender);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(4, 52, 116, 0.08);
+      border: 2px solid #E4ECF5;
+    }
+
+    .poster-card { padding: 12px; text-align: center; border-color: var(--lavender); }
+    .poster-card img { width: 100%; height: auto; border-radius: 12px; display: block; }
+
+    .quick-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    .quick-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #F8FAFD;
+      border: 1.5px solid #E1E9F4;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .quick-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .quick-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate); }
+    .quick-value { font-size: 0.96rem; font-weight: 700; color: var(--navy); }
+    .quick-sub { font-size: 0.85rem; color: var(--muted); }
+
+    .clean-link { color: var(--cobalt); text-decoration: none; border-bottom: 1.5px dashed var(--cobalt); }
+    .clean-link:hover { color: var(--navy); border-bottom-style: solid; }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--navy);
+      font-size: 1.55rem;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-note { font-size: 0.92rem; color: var(--muted); }
+
+    .guest-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .count-pill { font-size: 0.85rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: #E8F3FC; color: var(--navy); }
+    .count-pill.invited { background: var(--lavender-soft); color: #5A367A; }
+
+    .guest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+    .guest-item { background: #F8FAFD; border: 1.5px solid #E1E9F4; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+    .guest-item.going { background: #F2F9FF; border-color: #B6DCF8; }
+    .guest-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .guest-name { font-weight: 700; color: var(--navy); font-size: 0.98rem; }
+    .status-badge { font-size: 0.78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; background: var(--lavender-soft); color: #5A367A; }
+    .guest-item.going .status-badge { background: var(--navy); color: #FFFFFF; }
+    .guest-dish { font-size: 0.88rem; color: var(--cobalt); font-weight: 600; }
+    .loading-text { color: var(--muted); font-style: italic; font-size: 0.95rem; }
+
+    .form-wrapper { width: 100%; overflow: hidden; border-radius: 12px; }
+    .form-wrapper iframe { width: 100%; border: none; display: block; }
+    .footer { text-align: center; color: var(--slate); font-weight: 700; font-size: 0.95rem; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="eyebrow">✨ Let's Gather &amp; Celebrate ✨</div>
+    </header>
+
+    <section class="card poster-card">
+      <img src="poster-image.png" alt="Holiday Potluck Invitation - Sunday, December 20, 3-7 PM at 906 Derrydown Way, Decatur, GA" />
+    </section>
+
+    <section class="card quick-bar">
+      <div class="quick-item">
+        <div class="quick-icon">📍</div>
+        <div>
+          <div class="quick-label">Directions</div>
+          <div class="quick-value">
+            <a class="clean-link" href="https://maps.google.com/?q=906+Derrydown+Way,+Decatur,+GA+30030" target="_blank" rel="noopener">
+              906 Derrydown Way, Decatur
+            </a>
+          </div>
+          <div class="quick-sub">Tap to open in Google Maps</div>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <div class="quick-icon">📱</div>
+        <div>
+          <div class="quick-label">Questions?</div>
+          <div class="quick-value">
+            <a class="clean-link" href="tel:4047887014">404-788-7014</a>
+          </div>
+          <div class="quick-sub">
+            <a class="clean-link" href="mailto:kate.v.kendall@gmail.com">kate.v.kendall@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💌 RSVP Below</h2>
+      <p class="detail-note" style="margin-top: -8px; margin-bottom: 14px;">
+        Refresh the page after submitting to see your name and dish pop up below!
+      </p>
+      <div class="form-wrapper">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeZRKJCsQhKgh_MnfblAOA4dGoREt0WCFZQFmp3GgNVcv5JIA/viewform?embedded=true"
+          width="100%"
+          height="1546"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🎉 Who's Coming &amp; What's on the Menu</h2>
+      <div id="guest-summary" class="guest-summary"></div>
+      <div id="guest-list" class="guest-grid">
+        <div class="loading-text">Loading guest list...</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      ☕ Warm drinks, good company &amp; holiday cheer — see you December 20! ☕
+    </footer>
+  </div>
+
+  <script>
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl3sLSDOjCV-udzXdhkgVhIodd-m_YKWll2kuDd9vb_VDvzO7DSO4wt0xzekU6Y0XqplYemv8tupUx/pub?gid=1315054632&single=true&output=csv";
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let cur = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+
+        if (inQuotes) {
+          if (ch === '"' && next === '"') {
+            cur += '"';
+            i++;
+          } else if (ch === '"') {
+            inQuotes = false;
+          } else {
+            cur += ch;
+          }
+        } else {
+          if (ch === '"') {
+            inQuotes = true;
+          } else if (ch === ",") {
+            row.push(cur.trim());
+            cur = "";
+          } else if (ch === "\n" || (ch === "\r" && next === "\n")) {
+            if (ch === "\r") i++;
+            row.push(cur.trim());
+            if (row.some(cell => cell !== "")) rows.push(row);
+            row = [];
+            cur = "";
+          } else {
+            cur += ch;
+          }
+        }
+      }
+      if (cur !== "" || row.length > 0) {
+        row.push(cur.trim());
+        if (row.some(cell => cell !== "")) rows.push(row);
+      }
+      return rows;
+    }
+
+    async function loadGuests() {
+      const listEl = document.getElementById("guest-list");
+      const summaryEl = document.getElementById("guest-summary");
+
+      try {
+        const response = await fetch(CSV_URL);
+        if (!response.ok) throw new Error("Network response failed");
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+        const guests = rows.slice(1).filter(r => r[0]);
+
+        if (guests.length === 0) {
+          listEl.innerHTML = '<div class="loading-text">Be the first to RSVP above!</div>';
+          return;
+        }
+
+        guests.sort((a, b) => {
+          const aGoing = (a[1] || "").toLowerCase().includes("going") ? 0 : 1;
+          const bGoing = (b[1] || "").toLowerCase().includes("going") ? 0 : 1;
+          return aGoing - bGoing;
+        });
+
+        let goingCount = 0;
+        let invitedCount = 0;
+
+        listEl.innerHTML = "";
+        guests.forEach(([name, status = "Invited", dish = ""]) => {
+          const isGoing = status.toLowerCase().includes("going");
+          const isDeclined = status.toLowerCase().includes("can't") || status.toLowerCase().includes("no");
+          if (isDeclined) return;
+
+          if (isGoing) goingCount++;
+          else invitedCount++;
+
+          const card = document.createElement("div");
+          card.className = "guest-item" + (isGoing ? " going" : "");
+
+          const top = document.createElement("div");
+          top.className = "guest-top";
+
+          const nameSpan = document.createElement("span");
+          nameSpan.className = "guest-name";
+          nameSpan.textContent = name;
+
+          const badge = document.createElement("span");
+          badge.className = "status-badge";
+          badge.textContent = status || "Invited";
+
+          top.appendChild(nameSpan);
+          top.appendChild(badge);
+          card.appendChild(top);
+
+          if (dish) {
+            const dishDiv = document.createElement("div");
+            dishDiv.className = "guest-dish";
+            dishDiv.textContent = "🍽️ Bringing: " + dish;
+            card.appendChild(dishDiv);
+          }
+
+          listEl.appendChild(card);
+        });
+
+        summaryEl.innerHTML = `
+          <span class="count-pill">🎉 Going: ${goingCount}</span>
+          ${invitedCount > 0 ? `<span class="count-pill invited">💌 Invited: ${invitedCount}</span>` : ""}
+        `;
+      } catch (err) {
+        listEl.innerHTML = '<div class="loading-text">Guest list will appear once RSVPs start rolling in!</div>';
+      }
+    }
+
+    loadGuests();
+  </script>
+</body>
+</html>
