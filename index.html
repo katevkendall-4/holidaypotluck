@@ -101,14 +101,18 @@
     .guest-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .count-pill { font-size: 0.85rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: #E8F3FC; color: var(--navy); }
     .count-pill.invited { background: var(--lavender-soft); color: #5A367A; }
+    .count-pill.declined { background: #EDF2F7; color: #55657D; }
 
     .guest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
     .guest-item { background: #F8FAFD; border: 1.5px solid #E1E9F4; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
     .guest-item.going { background: #F2F9FF; border-color: #B6DCF8; }
+    .guest-item.declined { background: #F8FAFC; border-color: #E2E8F0; opacity: 0.75; }
     .guest-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .guest-name { font-weight: 700; color: var(--navy); font-size: 0.98rem; }
+    .guest-item.declined .guest-name { color: var(--muted); }
     .status-badge { font-size: 0.78rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; background: var(--lavender-soft); color: #5A367A; }
     .guest-item.going .status-badge { background: var(--navy); color: #FFFFFF; }
+    .guest-item.declined .status-badge { background: #E2E8F0; color: #475569; }
     .guest-dish { font-size: 0.88rem; color: var(--cobalt); font-weight: 600; }
     .loading-text { color: var(--muted); font-style: italic; font-size: 0.95rem; }
 
@@ -232,12 +236,19 @@
       return rows;
     }
 
+    function getStatusCategory(status) {
+      const lower = (status || "").toLowerCase();
+      if (lower.includes("going")) return "going";
+      if (lower.includes("can't") || lower.includes("cant") || lower.includes("no")) return "declined";
+      return "invited";
+    }
+
     async function loadGuests() {
       const listEl = document.getElementById("guest-list");
       const summaryEl = document.getElementById("guest-summary");
 
       try {
-        const response = await fetch(CSV_URL);
+        const response = await fetch(`${CSV_URL}&t=${Date.now()}`);
         if (!response.ok) throw new Error("Network response failed");
         const csvText = await response.text();
         const rows = parseCSV(csvText);
@@ -248,26 +259,23 @@
           return;
         }
 
-        guests.sort((a, b) => {
-          const aGoing = (a[1] || "").toLowerCase().includes("going") ? 0 : 1;
-          const bGoing = (b[1] || "").toLowerCase().includes("going") ? 0 : 1;
-          return aGoing - bGoing;
-        });
+        const sortOrder = { going: 0, invited: 1, declined: 2 };
+        guests.sort((a, b) => sortOrder[getStatusCategory(a[1])] - sortOrder[getStatusCategory(b[1])]);
 
         let goingCount = 0;
         let invitedCount = 0;
+        let declinedCount = 0;
 
         listEl.innerHTML = "";
         guests.forEach(([name, status = "Invited", dish = ""]) => {
-          const isGoing = status.toLowerCase().includes("going");
-          const isDeclined = status.toLowerCase().includes("can't") || status.toLowerCase().includes("no");
-          if (isDeclined) return;
+          const category = getStatusCategory(status);
 
-          if (isGoing) goingCount++;
+          if (category === "going") goingCount++;
+          else if (category === "declined") declinedCount++;
           else invitedCount++;
 
           const card = document.createElement("div");
-          card.className = "guest-item" + (isGoing ? " going" : "");
+          card.className = "guest-item" + (category === "going" ? " going" : category === "declined" ? " declined" : "");
 
           const top = document.createElement("div");
           top.className = "guest-top";
@@ -284,7 +292,7 @@
           top.appendChild(badge);
           card.appendChild(top);
 
-          if (dish) {
+          if (category === "going" && dish) {
             const dishDiv = document.createElement("div");
             dishDiv.className = "guest-dish";
             dishDiv.textContent = "🍽️ Bringing: " + dish;
@@ -297,6 +305,7 @@
         summaryEl.innerHTML = `
           <span class="count-pill">🎉 Going: ${goingCount}</span>
           ${invitedCount > 0 ? `<span class="count-pill invited">💌 Invited: ${invitedCount}</span>` : ""}
+          ${declinedCount > 0 ? `<span class="count-pill declined">😢 Can't make it: ${declinedCount}</span>` : ""}
         `;
       } catch (err) {
         listEl.innerHTML = '<div class="loading-text">Guest list will appear once RSVPs start rolling in!</div>';
